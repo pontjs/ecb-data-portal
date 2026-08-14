@@ -1,0 +1,72 @@
+{
+  "name": "@pontx/ecb-data-portal",
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.22.0",
+  "description": "Type-safe SDK and CLI for the ECB Data Portal SDMX API",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup && pontx cli build",
+    "dev": "tsup --watch",
+    "pontx": "pontx generate",
+    "generate:check": "pnpm pontx && git diff --exit-code -- src/apis",
+    "type-check": "tsc --noEmit",
+    "test:unit": "node scripts/run-unit-tests.mjs",
+    "test:e2e": "node --test test/e2e/*.test.mjs",
+    "quality": "pnpm generate:check && pnpm type-check && pnpm test:unit && pnpm build && pnpm test:e2e",
+    "example": "tsx examples/index.ts",
+    "prepublishOnly": "pnpm quality"
+  },
+  "keywords": [
+    "ecb",
+    "ecb-data-portal",
+    "sdmx",
+    "currency",
+    "exchange-rate",
+    "forex",
+    "api",
+    "sdk",
+    "typescript"
+  ],
+  "author": "Pontx contributors",
+  "license": "MIT",
+  "homepage": "https://github.com/pontjs/ecb-data-portal#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pontjs/ecb-data-portal.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsup": "^8.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.6.0",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "@pontx/sdk": "1.0.0-beta.4",
+    "pontx": "1.0.0-beta.11"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "pontx": {
+    "specDir": "dist/bin"
+  },
+  "bin": {
+    "pontx-ecb-data-portal": "./dist/bin/cli.cjs"
+  }
+}
