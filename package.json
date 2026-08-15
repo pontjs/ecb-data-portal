@@ -1,6 +1,6 @@
 {
   "name": "@pontx/ecb-data-portal",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "packageManager": "pnpm@10.22.0",
   "description": "Type-safe SDK and CLI for the ECB Data Portal SDMX API",
   "main": "./dist/index.js",
