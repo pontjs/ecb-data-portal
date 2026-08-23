@@ -1,5 +1,7 @@
 # @pontx/ecb-data-portal
 
+[Pontx Hub SDK guide](https://pontx.dev/en/sdks/ecb-data-portal)
+
 Type-safe TypeScript SDK and CLI for the ECB Data Portal SDMX API. The package
 is generated from the curated Pontx OpenAPI contract and tested against local
 contract fixtures plus bounded public ECB read requests.
