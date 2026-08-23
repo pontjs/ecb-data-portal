@@ -1,6 +1,6 @@
 {
   "name": "@pontx/ecb-data-portal",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "packageManager": "pnpm@10.22.0",
   "description": "Type-safe SDK and CLI for the ECB Data Portal SDMX API",
   "main": "./dist/index.js",
@@ -41,7 +41,7 @@
   ],
   "author": "Pontx contributors",
   "license": "MIT",
-  "homepage": "https://github.com/pontjs/ecb-data-portal#readme",
+  "homepage": "https://pontx.dev/en/sdks/ecb-data-portal",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pontjs/ecb-data-portal.git"
