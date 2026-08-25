@@ -13,9 +13,10 @@ npm install @pontx/ecb-data-portal
 ## SDK
 
 ```ts
-import ecbDataPortalClient from "@pontx/ecb-data-portal";
+import { createEcbDataPortalClient } from "@pontx/ecb-data-portal";
 
-const result = await ecbDataPortalClient.data.getDataBySeriesKey(
+const client = createEcbDataPortalClient();
+const result = await client.data.getDataBySeriesKey(
   "EXR",
   "M.USD.EUR.SP00.A",
   { lastNObservations: 1, format: "jsondata" },
