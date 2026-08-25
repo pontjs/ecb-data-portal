@@ -42,28 +42,19 @@ test("the built ECB SDK completes JSON and XML HTTP round trips", async (context
   const address = server.address();
   assert(address && typeof address === "object");
   const localOrigin = `http://127.0.0.1:${address.port}`;
-  const nativeFetch = globalThis.fetch;
-  globalThis.fetch = (input, init) => {
-    const requested = new URL(String(input));
-    return nativeFetch(
-      new URL(`${requested.pathname}${requested.search}`, localOrigin),
-      init,
-    );
-  };
-  context.after(() => {
-    globalThis.fetch = nativeFetch;
-  });
-
   const esm = await import(
     `${pathToFileURL(resolve(repositoryRoot, "dist/index.mjs")).href}?e2e=${Date.now()}`,
   );
-  const data = await esm.default.data.getDataBySeriesKey(
+  const client = esm.createEcbDataPortalClient({
+    baseUrl: `${localOrigin}/service`,
+  });
+  const data = await client.data.getDataBySeriesKey(
     "EXR",
     "M.USD.EUR.SP00.A",
     { lastNObservations: 1, format: "jsondata" },
   );
   assert.deepEqual(data, dataPayload);
-  const metadata = await esm.default.metadata.getMetadataArtefact(
+  const metadata = await client.metadata.getMetadataArtefact(
     "dataflow",
     "ECB",
     "EXR",
@@ -84,6 +75,7 @@ test("the built ECB SDK completes JSON and XML HTTP round trips", async (context
   const require = createRequire(import.meta.url);
   const cjs = require(resolve(repositoryRoot, "dist/index.js"));
   assert.equal(cjs.default, cjs.ecbDataPortalClient);
+  assert.equal(typeof cjs.createEcbDataPortalClient, "function");
 });
 
 test("the ECB CLI exposes the generated contract and a bounded dry run", async () => {

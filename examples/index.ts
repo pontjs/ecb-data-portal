@@ -1,6 +1,7 @@
-import ecbDataPortalClient from "../src";
+import { createEcbDataPortalClient } from "../src";
 
-const response = await ecbDataPortalClient.data.getDataBySeriesKey(
+const client = createEcbDataPortalClient();
+const response = await client.data.getDataBySeriesKey(
   "EXR",
   "M.USD.EUR.SP00.A",
   { lastNObservations: 1, format: "jsondata" },
